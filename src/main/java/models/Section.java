@@ -4,24 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class Section {
-    private final UUID id;
+public class Section {
+    private final int id;
     private final String name;
-    private final int maxExerciseScore;
-    private final int maxPracticeScore;
-    private final int maxESeminarScore;
+    private int maxExerciseScore;
+    private int maxPracticeScore;
+    private int maxSeminarScore;
+    private int maxActivityScore;
     private final List<Task> tasks;
 
-    public Section(UUID id, String name, int maxExerciseScore, int maxPracticeScore, int maxESeminarScore) {
+    public Section(int id, String name) {
+        this.id = id;
+        this.name = name;
+        tasks = new ArrayList<>();
+    }
+
+    public Section(int id, String name, int maxExerciseScore, int maxPracticeScore, int maxSeminarScore) {
         this.id = id;
         this.name = name;
         this.maxExerciseScore = maxExerciseScore;
         this.maxPracticeScore = maxPracticeScore;
-        this.maxESeminarScore = maxESeminarScore;
+        this.maxSeminarScore = maxSeminarScore;
         tasks = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
@@ -37,13 +44,34 @@ class Section {
         return maxPracticeScore;
     }
 
-    public int getMaxESeminarScore() {
-        return maxESeminarScore;
+    public int getMaxSeminarScore() {
+        return maxSeminarScore;
+    }
+
+    public int getMaxActivityScore() {
+        return maxActivityScore;
     }
 
     public List<Task> getTasks() {
-        List<Task> copyTasks = List.copyOf(tasks);
-        return copyTasks;
+        //List<Task> copyTasks = List.copyOf(tasks);
+        //return copyTasks;
+        return tasks;
+    }
+
+    public void setMaxExerciseScore(int maxExerciseScore) {
+        this.maxExerciseScore = maxExerciseScore;
+    }
+
+    public void setMaxPracticeScore(int maxPracticeScore) {
+        this.maxPracticeScore = maxPracticeScore;
+    }
+
+    public void setMaxSeminarScore(int maxSeminarScore) {
+        this.maxSeminarScore = maxSeminarScore;
+    }
+
+    public void setMaxActivityScore(int maxActivityScore) {
+        this.maxActivityScore = maxActivityScore;
     }
 
     public void addTasks(List<Task> addedTasks) {

@@ -2,16 +2,22 @@ package models;
 
 import java.util.UUID;
 
-class Task {
-    private final UUID id;
+public class Task {
+    private final int id;
     private final String name;
-    private final UUID sectionId;
-    private final String sectionName;
+    private UUID sectionId;
+    private String sectionName;
     private final TaskType taskType;
-    private final int maxScore;;
+    private int maxScore;;
     private int studentScore;
 
-    public Task(UUID id, String name, UUID sectionId, String sectionName, TaskType taskType, int maxScore, int studentScore) {
+    public Task(int id, String name, TaskType taskType) {
+        this.id = id;
+        this.name = name;
+        this.taskType = taskType;
+    }
+
+    public Task(int id, String name, UUID sectionId, String sectionName, TaskType taskType, int maxScore, int studentScore) {
         this.id = id;
         this.name = name;
         this.sectionId = sectionId;
@@ -21,7 +27,7 @@ class Task {
         this.studentScore = studentScore;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 

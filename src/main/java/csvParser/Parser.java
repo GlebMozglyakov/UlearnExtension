@@ -3,7 +3,17 @@ package csvParser;
 import com.opencsv.CSVReader;
 
 public class Parser {
-    public static void parser(CSVReader csvReader) {
+    private final CSVReader csvReader;
+
+    public Parser(CSVReader csvReader) {
+        if (csvReader != null) {
+            this.csvReader = csvReader;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void parseCsv() {
         String[] nextRecord;
 
         try {

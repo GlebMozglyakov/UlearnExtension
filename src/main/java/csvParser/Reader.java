@@ -5,14 +5,30 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
+import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Reader {
-    public static CSVReader readData(String file)
+    private final String fileName;
+
+    public Reader(String fileName) {
+        File file = new File(fileName);
+
+        if (file.exists()) {
+            this.fileName = fileName;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public CSVReader readFile()
     {
         try {
-            FileReader filereader = new FileReader(file);
+            FileReader filereader = new FileReader(fileName);
 
             CSVParser parser = new CSVParserBuilder().withSeparator( ';' ).build();
 
