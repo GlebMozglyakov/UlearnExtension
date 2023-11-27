@@ -1,3 +1,4 @@
+import db.StudentManager;
 import models.Section;
 import models.Student;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -13,17 +14,29 @@ public class Main {
         var sections = parser.parseAndGetSections();
         var students = parser.parseAndGetStudents();
 
-        for (Student student: students) {
-            System.out.println(student.getName() + " " +
-                               student.getSurname() + " " +
-                               student.getUlearnId() + " " +
-                               student.getEmail() + " " +
-                               student.getGroup());
+        int index = 0;
+
+        for (Student currentStudent: students) {
+            System.out.println(currentStudent.getName() + " " +
+                               currentStudent.getSurname() + " " +
+                               currentStudent.getUlearnId() + " " +
+                               currentStudent.getEmail() + " " +
+                               currentStudent.getGroup());
+            if (index > 25 && index < 30) {
+                StudentManager.addStudent(currentStudent);
+            }
+
+            index++;
+            if (index > 50) {
+                break;
+            }
         }
 
-
+        /*
         for (Section section : sections) {
             System.out.println(section.getName());
         }
+
+         */
     }
 }
